@@ -1,0 +1,120 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speech Recognition Example</title>
+</head>
+<body>
+<h1>Recipe Page</h1>
+<p>This is your recipe page content.</p>
+<button id="startBtn">Start Listening</button>
+<div id="output"></div>
+
+<script>
+// Check if browser supports Speech Recognition API
+if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+
+  // Set properties for speech recognition
+  recognition.lang = 'en-US';
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  // When speech is recognized, display it on the page
+  recognition.onresult = function(event) {
+    const transcript = event.results[0][0].transcript;
+    document.getElementById('output').innerText = "You said: " + transcript;
+  };
+
+  // Handle errors
+  recognition.onerror = function(event) {
+    console.error('Speech recognition error:', event.error);
+  };
+
+  // When the button is clicked, start speech recognition
+  document.getElementById('startBtn').addEventListener('click', function() {
+    recognition.start();
+    document.getElementById('output').innerText = "Listening...";
+  });
+} else {
+  document.getElementById('output').innerText = "Sorry, your browser doesn't support speech recognition.";
+}
+</script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speech Recognition Example</title>
+</head>
+<body>
+<h1>Recipe Page</h1>
+<p>This is a recipe for pasta:<br>
+  Boil water in a large pot. Add salt to taste. Add pasta to the boiling water and cook according to package instructions. Drain the pasta. In a separate pan, heat olive oil and add minced garlic. Cook until fragrant. Add chopped tomatoes, basil, salt, and pepper. Simmer for a few minutes. Finally, toss the cooked pasta with the tomato sauce. Serve hot and enjoy!
+</p>
+<p>This is a recipe for pasta:<br>
+    Boil water in a large pot. Add salt to taste. Add pasta to the boiling water and cook according to package instructions. Drain the pasta. In a separate pan, heat olive oil and add minced garlic. Cook until fragrant. Add chopped tomatoes, basil, salt, and pepper. Simmer for a few minutes. Finally, toss the cooked pasta with the tomato sauce. Serve hot and enjoy!
+  </p>
+<button id="startBtn">Start Listening</button>
+<div id="output"></div>
+
+<script>
+if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+  const synth = window.speechSynthesis;
+
+  recognition.lang = 'en-US';
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  let paragraphIndex = 0;
+  let paragraphs = document.querySelectorAll('p');
+  let reading = false;
+
+  function readParagraph(index) {
+    if (index < paragraphs.length) {
+      const utterance = new SpeechSynthesisUtterance(paragraphs[index].innerText);
+      synth.speak(utterance);
+      paragraphIndex = index;
+    } else {
+      paragraphIndex = 0;
+    }
+  }
+
+  recognition.onresult = function(event) {
+    const transcript = event.results[0][0].transcript.toLowerCase();
+    document.getElementById('output').innerText = "You said: " + transcript;
+
+    if (transcript === 'next' && paragraphIndex < paragraphs.length - 1) {
+      readParagraph(paragraphIndex + 1);
+    } else if (transcript === 'previous' && paragraphIndex > 0) {
+      readParagraph(paragraphIndex - 1);
+    }
+  };
+
+  recognition.onerror = function(event) {
+    console.error('Speech recognition error:', event.error);
+  };
+
+  document.getElementById('startBtn').addEventListener('click', function() {
+    if (!reading) {
+      readParagraph(paragraphIndex);
+      recognition.start();
+      reading = true;
+      document.getElementById('output').innerText = "Listening...";
+    } else {
+      synth.cancel();
+      recognition.stop();
+      reading = false;
+      document.getElementById('output').innerText = "";
+    }
+  });
+} else {
+  document.getElementById('output').innerText = "Sorry, your browser doesn't support speech recognition.";
+}
+</script>
+</body>
+</html>

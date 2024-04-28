@@ -1,0 +1,399 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>[Template] Sample Inner Page</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/assets/img/favicon.png" rel="icon">
+  <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/assets/css/main.css" rel="stylesheet">
+  <style>
+    /* Add padding to the top of the main content */
+    body {
+      padding-top: 80px; /* Adjust this value according to your navbar height */
+   overflow-x: hidden; }
+  
+    /* Ensure the navbar remains fixed at the top */
+    #header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background-color: #fff; /* Add background color to ensure it's visible */
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+    }
+  
+    /* Adjust padding for navbar links */
+    #navbar ul {
+      padding-top: 20px;
+    }
+  </style>
+  
+
+  
+</head>
+<body>
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <a href="#" class="logo d-flex align-items-center me-auto me-lg-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <img src="/assets/img/logo.png" alt="logo">
+        <h1>FlavourFusionRecipes</h1><span></span></h1>
+      </a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#menu">Menu</a></li>
+          
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        
+
+      <div class="col-md-3 text-end">
+        <form action="/search" method="post">
+          <input type="search" name="sesearchTerm" class="form-control" placeholder="Search..." aria-label="Search"/>
+        </form>
+      </div>
+      </nav>
+
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <!-- <section id="hero" class="hero d-flex align-items-center section-bg">
+    <div class="container">
+      <div class="row justify-content-between gy-5">
+        <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center  position-relative about-img align-items-lg-start text-center text-lg-start">
+          <h2 data-aos="fade-up">Craving For Something<br>Delicious and Delicious</h2>
+          <p data-aos="fade-up" data-aos-delay="100">Lets start cooking with us.<br> kuch healthy aur crunchy ho jaye</p>
+          <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
+            <a href="#book-a-table" class="btn-book-a-table">Lets gooo</a>
+          </div>
+        </div>
+        <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
+          <img src="/assets/img/coveri.png" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="300">
+        </div>
+      </div>
+    </div>
+  </section>End Hero Section -->
+<!--   
+ <section id="soemthi">
+    <h1><%= recipe.name %></h1>
+
+    <h2>Ingredients:</h2>
+    <ul>
+      <% recipe.ingredients.forEach(ingredient => { %>
+        <li><%= ingredient %></li>
+      <% }) %>
+    </ul>
+  
+    <h2>Instructions:</h2>
+    <p><%= recipe.instructions %></p>
+  
+    <a href="/">Back to All Recipes</a>
+ </section> -->
+ <% if(recipe != null ) { %>
+  <nav aria-label="breadcrumb" style="overflow: -moz-hidden-unscrollable;">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page"><%- recipe.name %></li>
+    </ol>
+  </nav>
+
+  <div class="row">
+    <div class="col-11 col-md-4">
+      <img src="/assets/img/menu/<%- recipe.image %>" class="img-fluid " style="top: 20px; left:10px border-radius: 50%;" alt="<%- recipe.name %>" loading="lazy">
+    </div>
+
+    <div class="col-12 col-md-8">
+      <div class="row">
+        <div class="col-12"><h1><%- recipe.name %></h1></div>
+        <div class="col-12 mb-4"><i class="bi bi-tag"></i> <%- recipe.category %></div>
+        <div class="col-12" style="white-space: pre-line;">
+          <h4>Cooking Instructions</h4>
+          <%- recipe.description %>
+        </div>
+      </div>
+
+      <div class="row pt-4">
+        <div class="col-12">
+          <h4>Ingredients</h4>
+          <ul class="list-group list-group-flush">
+            <% recipe.ingredients.forEach(function(ingredient, index){ %>
+              <li class="list-group-item"><%= ingredient %></li>
+            <% }) %>
+          </ul> 
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row pt-4">
+    <div class="col-12">
+      <h4>Ingredients</h4>
+      <ul class="list-group list-group-flush">
+        <% recipe.instructions.forEach(function(instructions, index){ %>
+          <li class="list-group-item"><%= instructions %></li>
+        <% }) %>
+      </ul> 
+    </div>
+  </div>
+</div>
+</div>
+
+  <div class="col-md-7">
+    <!-- Listen Button -->
+    <button type="button" class="btn btn-primary btn-lg btn-block col-lg-4 mb-3">Listen</button>
+    
+    <!-- Previous and Next Buttons -->
+    <div class="d-flex justify-content-between">
+      <!-- <button type="button" class="startBtn btn btn-primary col-md-3 btn-block mr-2">Previous</button>
+      <button type="button" class="btn btn-primary btn-block ml-2">Next</button>
+    </div> -->
+  </div>
+</div>
+<% } else { %>
+  <p>No item found.</p>
+<% } %>
+<button id="startBtn">Start Listening</button>
+<div id="output"></div>
+<script>
+  if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    const synth = window.speechSynthesis;
+    recognition.lang = 'en-US';
+    recognition.interimResults = true; // Enable interim results
+    recognition.maxAlternatives = 5; // Increase the maximum number of alternatives
+    recognition.continuous = true; // Allow continuous recognition
+    let ingredientIndex = 0;
+    let lastIngredients = [];
+    let instructionIndex = 0;
+    let ingredients = [<% recipe.ingredients.forEach(ingredient => { %>'<%= ingredient %>',<% }) %>];
+    let instructions = [<% recipe.instructions.forEach(instruction => { %>'<%= instruction %>',<% }) %>];
+    let readingIngredients = false;
+    let readingInstructions = false;
+
+    function readNextIngredients() {
+      const endIndex = Math.min(ingredientIndex + 3, ingredients.length);
+      lastIngredients = [];
+      for (let i = ingredientIndex; i < endIndex; i++) {
+        const utterance = new SpeechSynthesisUtterance(ingredients[i]);
+        utterance.rate = 0.5; // Set the speech rate to 0.5 (slower)
+        synth.speak(utterance);
+        lastIngredients.push(ingredients[i]);
+      }
+      ingredientIndex = endIndex;
+      if (ingredientIndex < ingredients.length) {
+        waitCommandForIngredients();
+      } else {
+        readingIngredients = false;
+        readNextInstruction();
+      }
+    }
+
+    function readNextInstruction() {
+      const endIndex = instructionIndex + 1;
+      for (let i = instructionIndex; i < endIndex; i++) {
+        const utterance = new SpeechSynthesisUtterance(instructions[i]);
+        utterance.rate = 0.7; // Set the speech rate to 0.7
+        synth.speak(utterance);
+      }
+      instructionIndex = endIndex;
+      if (instructionIndex < instructions.length) {
+        waitCommandForInstruction();
+      } else {
+        readingInstructions = false;
+        document.getElementById('output').innerText = "End of instructions.";
+      }
+    }
+
+    function waitCommandForIngredients() {
+      recognition.start();
+    }
+
+    function waitCommandForInstruction() {
+      recognition.start();
+    }
+
+    recognition.onresult = function(event) {
+      const transcript = event.results[event.results.length - 1][0].transcript.toLowerCase();
+      document.getElementById('output').innerText = "You said: " + transcript;
+      if (readingIngredients) {
+        if (transcript.includes('next')) {
+          readNextIngredients();
+        } else if (transcript.includes('previous')) {
+          repeatLastIngredients();
+        }
+      } else if (readingInstructions) {
+        if (transcript.includes('next')) {
+          readNextInstruction();
+        } else if (transcript.includes('previous')) {
+          instructionIndex--;
+          if (instructionIndex >= 0) {
+            const utterance = new SpeechSynthesisUtterance(instructions[instructionIndex]);
+            utterance.rate = 0.7;
+            synth.speak(utterance);
+          } else {
+            instructionIndex = 0;
+            document.getElementById('output').innerText = "No previous instructions.";
+          }
+        }
+      }
+    };
+
+    recognition.onerror = function(event) {
+      console.error('Speech recognition error:', event.error);
+    };
+
+    function repeatLastIngredients() {
+      if (lastIngredients.length > 0) {
+        const utterances = lastIngredients.map(ingredient => {
+          const utterance = new SpeechSynthesisUtterance(ingredient);
+          utterance.rate = 0.5;
+          return utterance;
+        });
+        utterances.forEach(utterance => {
+          synth.speak(utterance);
+        });
+      } else {
+        if (ingredientIndex > 0) {
+          ingredientIndex -= 3;
+          readNextIngredients();
+        } else {
+          readNextInstruction();
+        }
+      }
+    }
+
+    document.getElementById('startBtn').addEventListener('click', function() {
+      if (!readingIngredients) {
+        readNextIngredients();
+        readingIngredients = true;
+        document.getElementById('output').innerText = "Listening for ingredients...";
+      } else if (!readingInstructions) {
+        readNextInstruction();
+        readingInstructions = true;
+        document.getElementById('output').innerText = "Listening for instructions...";
+      }
+    });
+
+    recognition.onstart = function() {
+      document.getElementById('output').innerText = "Listening...";
+    };
+
+    recognition.onend = function() {
+      if (readingIngredients || readingInstructions) {
+        recognition.start();
+      } else {
+        document.getElementById('output').innerText = "";
+      }
+    };
+  } else {
+    document.getElementById('output').innerText = "Sorry, your browser doesn't support speech recognition.";
+  }
+</script>
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+
+    <div class="container">
+      <div class="row gy-3">
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-geo-alt icon"></i>
+          <div>
+            <h4>Address</h4>
+            <p>
+              A108 Adam Street <br>
+              New York, NY 535022 - US<br>
+            </p>
+          </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links d-flex">
+          <i class="bi bi-telephone icon"></i>
+          <div>
+            <h4>Reservations</h4>
+            <p>
+              <strong>Phone:</strong> +1 5589 55488 55<br>
+              <strong>Email:</strong> info@example.com<br>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links d-flex">
+          <i class="bi bi-clock icon"></i>
+          <div>
+            <h4>Opening Hours</h4>
+            <p>
+              <strong>Mon-Sat: 11AM</strong> - 23PM<br>
+              Sunday: Closed
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h4>Follow Us</h4>
+          <div class="social-links d-flex">
+            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        >
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+
+  </footer><!-- End Footer -->
+  <!-- End Footer -->
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/vendor/aos/aos.js"></script>
+  <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/assets/js/main.js"></script>
+  </body>
+</html>
